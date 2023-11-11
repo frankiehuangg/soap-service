@@ -2,3 +2,4 @@
 ./db/
 target/
 mysql-data/
+.idea/
