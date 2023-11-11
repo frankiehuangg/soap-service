@@ -13,7 +13,6 @@ public class App {
             String port = ch.get(SERVER_PORT_KEY);
 
             System.out.println("Starting server at " + host + ":" + port);
-//            Endpoint.publish(host + ":" + port + "/ws/subscription", new ws.SubscriptionWSImpl());
             System.out.println("Server started at " + host + ":" + port);
         } catch (Exception e) {
             e.printStackTrace();
