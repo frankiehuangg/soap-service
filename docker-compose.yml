@@ -1,0 +1,38 @@
+version: '3.3'
+
+services:
+  soap-service:
+    container_name: soap-service
+    build: .
+    hostname: soap-service
+    depends_on:
+      - soap-db
+    ports:
+      - "8020:8000"
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      USE_DOCKER_CONFIG: ${USE_DOCKER_CONFIG}
+
+  soap-db:
+    container_name: soap-db
+    image: mysql:8.2
+    hostname: soap-db
+    ports:
+      - "3306:3306"
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      USE_DOCKER_CONFIG: ${USE_DOCKER_CONFIG}
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    volumes:
+      - ./db:/var/lib/postgresql/data
