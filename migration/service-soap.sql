@@ -10,3 +10,7 @@ CREATE TABLE `logging` (
   `endpoint` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
   `request_location` timestamp NOT NULL
 );
+
+INSERT INTO `api_keys` VALUES 
+('1d2571f6-554a-4ac3-ac1d-43aefeda5668', 'rest client'),
+('d1e5fb53-033c-4360-8e74-57f506d283d4', 'monolithic client');
