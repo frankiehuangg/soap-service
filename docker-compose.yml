@@ -8,7 +8,7 @@ services:
     depends_on:
       - soap-db
     ports:
-      - "8020:8000"
+      - "8020:8020"
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
       MYSQL_DATABASE: ${MYSQL_DATABASE}
@@ -35,4 +35,5 @@ services:
       timeout: 5s
       retries: 5
     volumes:
-      - ./db:/var/lib/postgresql/data
+      - ./migration/service-soap.sql:/docker-entrypoint-initdb.d/schema.sql:ro
+      - ./mysql-data:/var/lib/mysql

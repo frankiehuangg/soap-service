@@ -1,8 +1,8 @@
 FROM openjdk:8
 EXPOSE 8020
 
-WORKDIR app 
+COPY ./target /app
 
-COPY ./target .
+WORKDIR /app 
 
-ENTRYPOINT ["java", "-jar", "service-soap-jar-with-dependencies.jar"]
+ENTRYPOINT ["java", "-jar", "soap-service-jar-with-dependencies.jar"]
