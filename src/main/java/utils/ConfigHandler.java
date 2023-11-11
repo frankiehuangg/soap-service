@@ -3,7 +3,7 @@ package utils;
 public class ConfigHandler {
     private static ConfigHandler instance = null;
     private PropertiesHandler ph;
-    private final String USE_DOCKER_CONFIG_KEY = "USE_DOCKER_CONFIG";
+    private final String USE_DOCKER_CONFIG_KEY = "SOAP_USE_DOCKER_CONFIG";
     private final String CONFIG_FILE = "config.properties";
     private final String CONFIG_FILE_DOCKER = "config.docker.properties";
 
