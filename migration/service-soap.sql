@@ -3,6 +3,25 @@ CREATE TABLE `api_keys` (
   `client` varchar(255) NOT NULL
 );
 
+CREATE TABLE `follows` (
+    `following_user_id` INT NOT NULL,
+    `followed_user_id` INT NOT NULL,
+    PRIMARY KEY (`following_user_id`, `followed_user_id`)
+);
+
+CREATE TABLE `blocks` (
+    `blocking_user_id` INT NOT NULL,
+    `blocked_user_id` INT NOT NULL,
+    PRIMARY KEY (`blocking_user_id`, `blocked_user_id`)
+);
+
+CREATE TABLE `notifications` (
+    `notification_id` INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    `user_id` INT NOT NULL,
+    `notification_content` TEXT NOT NULL,
+    `status` VARCHAR(16) NOT NULL
+);
+
 CREATE TABLE `logging` (
   `id` int PRIMARY KEY NOT NULL AUTO_INCREMENT,
   `description` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,

@@ -6,5 +6,5 @@ import javax.jws.WebService;
 @WebService
 public interface HealthService {
     @WebMethod
-    public String test();
+    public String checkHealth();
 }

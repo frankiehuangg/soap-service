@@ -25,7 +25,7 @@ public abstract class BaseRepository<BaseModel> {
         throw new Exception("Not implemented");
     }
 
-    public BaseModel delete(BaseModel model) throws Exception {
+    public boolean delete(BaseModel model) throws Exception {
         throw new Exception("Not implemented");
     }
 }
