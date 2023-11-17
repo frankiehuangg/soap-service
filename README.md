@@ -6,7 +6,9 @@ Service SOAP pada Twitter digunakan untuk mengelola data blokir, following, foll
 
 ## Skema Basis Data
 
-![Skema Basis Data]()
+![Skema Basis Data](doc/SOAPservice.png)
+
+NOTE: Bagian yang terdapat pada basis data adalah entitas yang tidak berwarna/ber-_outline_ putih
 
 ## API Endpoints
 Block Endpoints
