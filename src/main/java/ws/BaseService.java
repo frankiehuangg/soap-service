@@ -1,5 +1,6 @@
 package ws;
 
+import com.sun.net.httpserver.HttpExchange;
 import lombok.var;
 import model.APIKey;
 import model.Logging;
@@ -9,7 +10,6 @@ import repository.LoggingRepository;
 import javax.annotation.Resource;
 import javax.xml.ws.WebServiceContext;
 import javax.xml.ws.handler.MessageContext;
-import javax.xml.ws.spi.http.HttpExchange;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.Arrays;
@@ -42,6 +42,9 @@ public abstract class BaseService {
     protected String getClientByAPIKey() throws Exception {
         MessageContext mc = context.getMessageContext();
         Map<String, Object> requestHeader = (Map) mc.get(mc.HTTP_REQUEST_HEADERS);
+
+        System.out.println(requestHeader.get("api-key"));
+
         String APIKey = ((List<String>) requestHeader.get("api-key")).get(0);
         System.out.println("API key: " + APIKey);
 

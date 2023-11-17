@@ -12,6 +12,9 @@ public interface NotificationService {
     public Notification createNotification(int userId, String notificationContent);
 
     @WebMethod
+    public List<Notification> getAllNotifications();
+
+    @WebMethod
     public List<Notification> getNotificationFromUserId(int userId);
 
     @WebMethod
