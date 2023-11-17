@@ -8,13 +8,15 @@ services:
     depends_on:
       - soap-db
     ports:
-      - "8020:8000"
+      - "8020:8020"
     environment:
-      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
-      MYSQL_DATABASE: ${MYSQL_DATABASE}
-      MYSQL_USER: ${MYSQL_USER}
-      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
-      USE_DOCKER_CONFIG: ${USE_DOCKER_CONFIG}
+      MYSQL_HOST: ${SOAP_MYSQL_HOST}
+      MYSQL_USER: ${SOAP_MYSQL_USER}
+      MYSQL_USERNAME: ${SOAP_MYSQL_USERNAME}
+      MYSQL_DATABASE: ${SOAP_MYSQL_DATABASE}
+      MYSQL_PASSWORD: ${SOAP_MYSQL_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${SOAP_MYSQL_ROOT_PASSWORD}
+      USE_DOCKER_CONFIG: ${SOAP_USE_DOCKER_CONFIG}
 
   soap-db:
     container_name: soap-db
@@ -24,15 +26,18 @@ services:
       - "3306:3306"
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
-      MYSQL_DATABASE: ${MYSQL_DATABASE}
-      MYSQL_USER: ${MYSQL_USER}
-      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
-      USE_DOCKER_CONFIG: ${USE_DOCKER_CONFIG}
+      MYSQL_HOST: ${SOAP_MYSQL_HOST}
+      MYSQL_USER: ${SOAP_MYSQL_USER}
+      MYSQL_USERNAME: ${SOAP_MYSQL_USERNAME}
+      MYSQL_DATABASE: ${SOAP_MYSQL_DATABASE}
+      MYSQL_PASSWORD: ${SOAP_MYSQL_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${SOAP_MYSQL_ROOT_PASSWORD}
+      USE_DOCKER_CONFIG: ${SOAP_USE_DOCKER_CONFIG}
     healthcheck:
       test: ["CMD-SHELL", "mysqladmin", "ping", "-h", "localhost"]
       interval: 5s
       timeout: 5s
       retries: 5
     volumes:
-      - ./db:/var/lib/postgresql/data
+      - ./migration/service-soap.sql:/docker-entrypoint-initdb.d/schema.sql:ro
+      - ./mysql-data:/var/lib/mysql

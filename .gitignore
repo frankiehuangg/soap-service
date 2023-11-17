@@ -1,3 +1,5 @@
 .env
-db/
+./db/
 target/
+mysql-data/
+.idea/
